@@ -1,0 +1,18 @@
+﻿@using BlazorExample.WebApp.Services
+@inject ClientAuthorizationService AuthorizationService
+
+<AuthorizeView>
+    <Authorized>
+        <div>
+            <span class="form-control">@AuthorizationService.AuthorizedUser.Name</span>
+        </div>
+        <div>
+            <a class="btn btn-outline-primary" href="@AuthorizationService.ApiUriSignOut">Sign Out</a>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div>
+            <a class="btn btn-outline-primary" href="@AuthorizationService.ApiUriSignIn">Sign In</a>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
