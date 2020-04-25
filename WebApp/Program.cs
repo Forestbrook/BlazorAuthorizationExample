@@ -1,10 +1,10 @@
-﻿using System;
+﻿using BlazorExample.WebApp.Services;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using BlazorExample.WebApp.Services;
-using Microsoft.AspNetCore.Blazor.Hosting;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorExample.WebApp
 {
@@ -21,6 +21,7 @@ namespace BlazorExample.WebApp
             builder.Services.AddOptions();
 
             builder.RootComponents.Add<App>("app");
+            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             var host = builder.Build();
 
             // TODO: Load initial language

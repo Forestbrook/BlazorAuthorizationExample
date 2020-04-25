@@ -1,9 +1,9 @@
 ﻿using BlazorExample.Models;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -32,7 +32,7 @@ namespace BlazorExample.WebApp.Services
         {
             ClaimsPrincipal user;
             if (!string.IsNullOrEmpty(ApiUriGetAuthorizedUser))
-                AuthorizedUser = await _httpClient.GetJsonAsync<AuthorizedUser>(ApiUriGetAuthorizedUser);
+                AuthorizedUser = await _httpClient.GetFromJsonAsync<AuthorizedUser>(ApiUriGetAuthorizedUser);
 
             if (string.IsNullOrEmpty(AuthorizedUser.Name))
             {
